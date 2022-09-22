@@ -1,6 +1,5 @@
 import os
 
-
 DOWNLOADED_WEBSITES_MAIN_FOLDER_NAME = 'downloaded_websites'
 ELASTIC_SEARCH_DIR = 'elastic'
 POSTGRES_DIR = 'postgres'
@@ -14,7 +13,6 @@ def GetMainDirPath():
 
 
 def CheckFolderPresent(main_dir_path, dir_name):
-
     dir_list = []
     for file in os.listdir(os.path.normpath(main_dir_path)):
         check_dir = os.path.isdir(main_dir_path + '\\' + file)
@@ -37,8 +35,8 @@ def ListAllDirInFolder(main_dir_path):
 
     return dir_list
 
-def CreateDir(dir_name, main_path):
 
+def CreateDir(dir_name, main_path):
     if dir_name == DOWNLOADED_WEBSITES_MAIN_FOLDER_NAME:
         os.mkdir(main_path + '\\' + dir_name)
         os.mkdir(main_path + '\\' + dir_name + '\\raw')
@@ -58,5 +56,3 @@ def MaintainDownloadFolderController():
     for dir_name in required_dirs:
         if CheckFolderPresent(main_dir_path, dir_name) is False:
             CreateDir(dir_name, main_dir_path)
-
-
