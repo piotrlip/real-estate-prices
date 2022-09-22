@@ -1,9 +1,7 @@
 import os
 
-from folder_download_websites.check_folder_present import CheckFolderPresent
 
-
-RAW_WEBSITES_MAIN_FOLDER_NAME = 'raw_websites'
+DOWNLOADED_WEBSITES_MAIN_FOLDER_NAME = 'downloaded_websites'
 
 
 def GetMainDirPath():
@@ -13,12 +11,25 @@ def GetMainDirPath():
     return extrac_main_dir[0]
 
 
-MAIN_DIR_PATH = GetMainDirPath()
+def CheckFolderPresent(main_dir_path, dir_name):
+
+    extrac_main_dir = main_dir_path.split("\\real-estate-prices")
+    dir_list = []
+    for file in os.listdir(os.path.normpath(extrac_main_dir[0])):
+        check_dir = os.path.isdir(extrac_main_dir[0] + '\\' + file)
+        if check_dir is True:
+            dir_list.append(file)
+
+    if dir_name not in dir_list:
+        os.mkdir(extrac_main_dir[0] + '\\' + dir_name)
+
+
 
 def MaintainDownloadFolderController():
-    print('112 MaintainDownloadFolderController()')
-    CheckFolderPresent()
+    main_dir_path = GetMainDirPath()
+
+    CheckFolderPresent(main_dir_path, DOWNLOADED_WEBSITES_MAIN_FOLDER_NAME)
 
 
 if __name__ == '__main__':
-    CheckFolderPresent()
+    MaintainDownloadFolderController()
