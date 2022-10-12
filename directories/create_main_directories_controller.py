@@ -62,7 +62,6 @@ def CreateDownloadedFolders(folder_name, year, month):
 
     str_year = str(year)
     str_month = str(month)
-    # print(str_month, ',', str_year)
 
     if folder_name == 'raw':
 
@@ -90,7 +89,6 @@ def CreateDownloadedFolders(folder_name, year, month):
 
 
 def CleanDownloadDirectories(path, website, unnecessary_file_names):
-
     print('CleanDownloadDirectories')
     dir_list = []
     clean_website_name = website.replace('https://', '').replace('/', '')
@@ -100,11 +98,9 @@ def CleanDownloadDirectories(path, website, unnecessary_file_names):
 
     all_files_list = os.listdir(os.path.normpath(full_path_to_main_download_folder))
 
-    #test = os.listdir(os.path.normpath(path + '\\' + clean_website_name))
-    #print()
     for file in all_files_list:
         try:
-            #print(path + '\\' +  clean_website_name + '\\' + file)
+
             check_dir = os.path.isdir(full_path_to_main_download_folder + '\\' + file)
             if check_dir is True:
                 dir_list.append(full_path_to_main_download_folder + '\\' + file)
@@ -118,39 +114,16 @@ def CleanDownloadDirectories(path, website, unnecessary_file_names):
                             print('File not found in: ' + full_path_to_main_download_folder + '\\' + file)
 
                 if 'html' in file:
-                    print()
-
                     new_name = list(file)[:-1]
-                    print(''.join(new_name))
                     old_file_name = full_path_to_main_download_folder + '//' + file
                     new_file_name = full_path_to_main_download_folder + '//' + ''.join(new_name)
                     os.rename(old_file_name, new_file_name)
-                    pass
-
-
-
-
-
-
 
         except FileNotFoundError:
             print('File not found in: ' + full_path_to_main_download_folder + '\\' + file)
 
     for directory in dir_list:
-        # print('\n\n\n\n')
-        # print(dir)
-        # print(path + '\\' +  clean_website_name + '\\' + dir)
         shutil.rmtree(directory)
-        # os.remove(path + '\\' + dir)
-
-
-        # try:
-        #     #print(path + '\\' + element)
-        #
-        #     #os.remove(path + '\\' + element)
-        # except FileNotFoundError:
-        #     print('File not Found in: ' + full_path_to_main_download_folder + '\\' + element)
-
 
 
 def MaintainMainFoldersController():
