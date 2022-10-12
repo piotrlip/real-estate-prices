@@ -8,7 +8,7 @@ FOLDER_STEP_NAME = 'raw'
 DOCKER_MAIN_COMMAND = 'docker run -i --rm -v'
 # DOCKER_MAIN_COMMAND = 'docker run --rm -it -v'
 WEBSITE_ADDRESS = 'https://otodom.pl/'
-UNNECESSARY_FILE_NAMES = ['index.html']
+UNNECESSARY_FILE_NAMES = ['index']
 
 def get_first_date_of_month(year, month):
     first_date = datetime(year, month, 1)
@@ -39,7 +39,7 @@ user_input = sys.argv
 
 # os.system("docker pull hartator/wayback-machine-downloader")
 
-month_list = [1,2,3]
+month_list = [3]
 
 for month in month_list:
     year = 2015  # int(user_input[1])
@@ -51,7 +51,7 @@ for month in month_list:
     path_to_raw_dir = CreateDownloadedFolders(FOLDER_STEP_NAME, year, month)
 
 
-    RunDockerCommand(DOCKER_MAIN_COMMAND, path_to_raw_dir, WEBSITE_ADDRESS, first_day, last_day)
+    #RunDockerCommand(DOCKER_MAIN_COMMAND, path_to_raw_dir, WEBSITE_ADDRESS, first_day, last_day)
 
     # docker_command1 = 'docker run --rm -it -v $PWD/websites:/websites hartator/wayback-machine-downloader http://example.com --from 20060716231334 --to 20100916231334 --concurrency 2'
 
